@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../jquery-3.3.1.min.js"></script>
+  <title>Document</title>
+  <style>
+    .test {
+      position: relative;
+      top: 0;
+    }
+
+    .outterbox {
+    }
+
+    .box {
+      height: 80px;
+      text-align: center;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .box div {
+      display: inline-table;
+      width:12%;
+    }
+  </style>
+  <script>
+  var list=[];
+  list[0]="你";
+  list[1]="你家人";
+  list[2]="你伴侶";
+  list[3]="你寵物";
+  list[4]="你親戚";
+  list[5]="你老闆";
+  list[6]="你同事";
+
+  var list2=[];
+  list2[0]="發達";
+  list2[1]="遇桃花";
+  list2[2]="升職";
+  list2[3]="踩到屎";
+  list2[4]="炒尤魚";
+  list2[5]="執到寶";
+  list2[6]="受傷";
+  list2[7]="遇貴人";
+  list2[8]="遇熟人";
+
+  var list3=[];
+  list3[0]="的機率";
+  list3[1]="的可能性";
+  list3[2]="的難度";
+  list3[3]="的頻率";
+
+  var list4=[];
+  list4[0]="佷大";
+  list4[1]="很小";
+  list4[2]="一般";
+  list4[3]="徧小";
+  list4[4]="徧大";
+
+  $(document).ready(function() {
+  list.forEach(function(value){
+    $(".one").append('<h1>'+value+'</h1>');
+  })
+  list2.forEach(function(value){
+    $(".two").append('<h1>'+value+'</h1>');
+  })
+  list3.forEach(function(value){
+    $(".three").append('<h1>'+value+'</h1>');
+  })
+  list4.forEach(function(value){
+    $(".four").append('<h1>'+value+'</h1>');
+  })
+  })
+  </script>
+</head>
+
+<body>
+  <div class="click"><button>Click</button></div>
+  <div class="outterbox">
+  <div class="box">
+    <div class="one test"></div>
+    <div class="two test"></div>
+    <div class="three test"></div>
+    <div class="four test"></div>
+  </div>
+</div>
+
+  <script>
+    $(document).ready(function() {
+      $(".click").click(function() {
+        var no_1 = Math.ceil(Math.random() * 7)+20
+        var no_2 = Math.ceil(Math.random() * 9)+17
+        var no_3 = Math.ceil(Math.random() * 4)+15
+        var no_4 = Math.ceil(Math.random() * 5)+14
+
+        swing(".one", no_1)
+        // setTimeout(function(){swing(".two", no_2)}, no_1*100);
+        // setTimeout(function(){swing(".three", no_3)}, (no_1+no_2)*100);
+        // setTimeout(function(){swing(".four", no_4)}, (no_1+no_2+no_3)*100);
+        setTimeout(function(){swing(".two", no_2)}, 500);
+        setTimeout(function(){swing(".three", no_3)}, 1000);
+        setTimeout(function(){swing(".four", no_4)}, 1500);
+      })
+    })
+
+      function swing(selector, value) {
+        for(i=0;i<value;i++) {
+        $(selector).animate({top: '-=63.5px'}, 80).queue(function(){
+        $(selector).css("top", "0");
+        $(this).dequeue();
+        $(selector + " h1:last").after($(selector + " h1:first").clone(true));
+        $(selector + " h1:first").remove();
+        })
+      }
+    }
+  </script>
+</body>
+
+</html>
